@@ -28,31 +28,32 @@
 
                             if (ViewData["pass"] == "3")
                             {
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Create">Administrators</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Patients" asp-action="Create">Patients</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Covid_status" asp-action="Create">Status</a>
-                    </li>
-                    <li class="nav-item btn btn-primary">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Log_in">Log in</a>
-                    </li>
-                    
-                    }
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Create">Administrators</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Patients" asp-action="Create">Patients</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Covid_status" asp-action="Create">Status</a>
+                                </li>
+                                <li class="nav-item btn btn-primary">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Log_in">Log in</a>
+                                </li>
+
+                            }
                         }
                         @*<li class="nav-item btn btn-primary">
 
-        <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Log_in">
+                    <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Log_in">
 
-            Check status
-        </a>*@
+                        Check status
+                    </a>*@
                         </li>
                     </ul>
                 </div>
             </div>
+            <a class="btn btn-success ml-auto mr-1" asp-action="Dashboard" asp-controller="Administrations">Home &nbsp;<i class="fa fa-home" aria-hidden="true"></i></a>
         </nav>
     </header>
     <div class="container">
@@ -82,8 +83,8 @@
                                 <div class="card-body text-center">
                                     <img src="/images/logo.png" style="height:80%;width:60%" alt="First slide">
 
-                                    <h5 class="card-title">Kericho County COVID19 Tracing aand tracking system</h5>
-                                    <p class="card-text">Easy communication to Positive tested Covid19 patients</p>
+                                    <h5 class="card-title">Kericho County COVID19 Tracing and tracking system</h5>
+                                    <p class="card-text">Easy tracing and communication to Positive tested Covid19 patients</p>
 
                                 </div>
                             </div>

@@ -7,26 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Covid19Tracing.Models;
 using Fuela.DBContext;
-using Microsoft.AspNetCore.Http;
 
 namespace Covid19Tracing.Controllers
 {
-    public class PatientsController : Controller
+    public class Administrations1Controller : Controller
     {
         private readonly ApplicationDBContext _context;
 
-        public PatientsController(ApplicationDBContext context)
+        public Administrations1Controller(ApplicationDBContext context)
         {
             _context = context;
         }
 
-        // GET: Patients
+        // GET: Administrations1
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Patients.ToListAsync());
+            return View(await _context.Administration.ToListAsync());
         }
 
-        // GET: Patients/Details/5
+        // GET: Administrations1/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,53 +33,39 @@ namespace Covid19Tracing.Controllers
                 return NotFound();
             }
 
-            var patients = await _context.Patients
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (patients == null)
+            var administration = await _context.Administration
+                .FirstOrDefaultAsync(m => m.staff_no == id);
+            if (administration == null)
             {
                 return NotFound();
             }
 
-            return View(patients);
+            return View(administration);
         }
 
-        // GET: Patients/Create
+        // GET: Administrations1/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Patients/Create
+        // POST: Administrations1/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Full_names,Age,Location,Phone_number,Date,Password,Role")] Patients patients,Patients p2)
+        public async Task<IActionResult> Create([Bind("staff_no,Full_names,Phone_number,Email,Password,Role,Department")] Administration administration)
         {
             if (ModelState.IsValid)
             {
-                var id = p2.ID;
-                var result = _context.Patients.Where(i => i.ID == id).FirstOrDefault();
-
-                if (result == null)
-                {
-                    _context.Add(patients);
-                    await _context.SaveChangesAsync();
-                    HttpContext.Session.SetString("P_patients_id", patients.ID.ToString());
-                    //ViewData["P_patients_id"] = patients.ID;
-                    //return RedirectToAction("Create", "SuspectedCases",new { @niID = p2.ID });
-                    return RedirectToAction("Create", "Covid_status", new {@p_id = p2.ID });
-                }
-                else
-                {
-                    ViewBag.Error = "1";
-                }
-                
+                _context.Add(administration);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            return View(patients);
+            return View(administration);
         }
 
-        // GET: Patients/Edit/5
+        // GET: Administrations1/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -88,22 +73,22 @@ namespace Covid19Tracing.Controllers
                 return NotFound();
             }
 
-            var patients = await _context.Patients.FindAsync(id);
-            if (patients == null)
+            var administration = await _context.Administration.FindAsync(id);
+            if (administration == null)
             {
                 return NotFound();
             }
-            return View(patients);
+            return View(administration);
         }
 
-        // POST: Patients/Edit/5
+        // POST: Administrations1/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Full_names,Age,Location,Phone_number,Date,Password,Role")] Patients patients)
+        public async Task<IActionResult> Edit(int id, [Bind("staff_no,Full_names,Phone_number,Email,Password,Role,Department")] Administration administration)
         {
-            if (id != patients.ID)
+            if (id != administration.staff_no)
             {
                 return NotFound();
             }
@@ -112,12 +97,12 @@ namespace Covid19Tracing.Controllers
             {
                 try
                 {
-                    _context.Update(patients);
+                    _context.Update(administration);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PatientsExists(patients.ID))
+                    if (!AdministrationExists(administration.staff_no))
                     {
                         return NotFound();
                     }
@@ -128,10 +113,10 @@ namespace Covid19Tracing.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(patients);
+            return View(administration);
         }
 
-        // GET: Patients/Delete/5
+        // GET: Administrations1/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -139,30 +124,30 @@ namespace Covid19Tracing.Controllers
                 return NotFound();
             }
 
-            var patients = await _context.Patients
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (patients == null)
+            var administration = await _context.Administration
+                .FirstOrDefaultAsync(m => m.staff_no == id);
+            if (administration == null)
             {
                 return NotFound();
             }
 
-            return View(patients);
+            return View(administration);
         }
 
-        // POST: Patients/Delete/5
+        // POST: Administrations1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var patients = await _context.Patients.FindAsync(id);
-            _context.Patients.Remove(patients);
+            var administration = await _context.Administration.FindAsync(id);
+            _context.Administration.Remove(administration);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PatientsExists(int id)
+        private bool AdministrationExists(int id)
         {
-            return _context.Patients.Any(e => e.ID == id);
+            return _context.Administration.Any(e => e.staff_no == id);
         }
     }
 }

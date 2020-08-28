@@ -3,14 +3,16 @@ using Fuela.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Covid19Tracing.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200828075424_v14")]
+    partial class v14
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +64,8 @@ namespace Covid19Tracing.Migrations
                         .HasMaxLength(50);
 
                     b.Property<int>("Patients_id")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(50)")
@@ -110,8 +113,8 @@ namespace Covid19Tracing.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone_number")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Phone_number")
+                        .HasColumnType("int");
 
                     b.Property<string>("T_History")
                         .HasColumnType("nvarchar(max)");
@@ -119,22 +122,6 @@ namespace Covid19Tracing.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("Covid19Tracing.Models.Status", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("C_status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("Covid19Tracing.Models.SuspectedCases", b =>

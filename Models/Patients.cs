@@ -38,7 +38,7 @@ namespace Covid19Tracing.Models
         
         [Display(Name = "Phone number", Prompt = "Phone number")]
         [DataType(DataType.PhoneNumber)]
-        public int Phone_number { get; set; }
+        public string Phone_number { get; set; }
 
         
         [Display(Name = "Date", Prompt = "Date")]

@@ -64,10 +64,52 @@ namespace Covid19Tracing.Controllers
             return RedirectToAction("Log_in", "Administrations");
         }
 
-        //public IActionResult search()
-        //{
-        //    return View();
-        //}
+        public IActionResult search( int id)
+        {
+            var PatientId = id;
+
+            var result = _context.Patients.Where(i => i.ID == PatientId);
+            if (result == null)
+            {
+                //ViewBag.Log_in = "0";
+                //return RedirectToAction(nameof(Index));
+                //HttpContext.Session.SetString("Log_in", "0");
+                ViewBag.Error = "Error! this patient does not exists";
+                return RedirectToAction(nameof(Dashboard));
+
+
+            }
+            else
+            {
+
+
+
+                ViewBag.Error = null;
+                var result1 = _context.Covid_status.Where(i => i.Patients_id == id);
+                if (result1 == null)
+                {
+                    return RedirectToAction("Create", "Covid_status", new { @p_id = id });
+
+                }
+                else
+                {
+                    return RedirectToAction("Edit", "Covid_status", new { @id = id });
+                }
+               
+               
+
+
+                //RedirectToAction("Create", "Administrations");
+
+
+            }
+
+         //return   RedirectToAction("Create", "Covid_status", new { @niID = id });
+
+
+
+
+        }
         [HttpPost]
         public void Search(Patients patient)
         {
@@ -119,18 +161,45 @@ namespace Covid19Tracing.Controllers
 
         }
 
-        public IActionResult Dashboard( string role,int id,Administration ad)
+        public IActionResult Dashboard(int id,Administration ad)
         {
 
             if (HttpContext.Session.GetString("Pass") == "1")
             {
-                ViewData["Roles"] = role;
-                var stafff = id;
-                //var password = ad.Password;
-                var result = _context.Administration.Where(i => i.staff_no == stafff).FirstOrDefault();
-                ViewData["identity"] = result.Full_names;
+                
+                ////var stafff = id;
+                if (id == null)
+                {
+                    var stafff = id;
+                    var result = _context.Administration.Where(i => i.staff_no == stafff).FirstOrDefault();
+                    if (result == null)
+                    {
 
-        
+                    }
+                    else
+                    {
+                        ViewData["identity"] = result.Full_names;
+                        ViewData["Roles"] = result.Role;
+                    }
+                }
+                else
+                {
+                    var stafff = int.Parse(HttpContext.Session.GetString("Staff_no"));
+                    var result = _context.Administration.Where(i => i.staff_no == stafff).FirstOrDefault();
+                    if (result == null)
+                    {
+
+                    }
+                    else
+                    {
+                        ViewData["identity"] = result.Full_names;
+                        ViewData["Roles"] = result.Role;
+                    }
+                }
+                //var password = ad.Password;
+                
+
+
             }
             else
             {
@@ -158,8 +227,9 @@ namespace Covid19Tracing.Controllers
                 //HttpContext.Session.SetString("Role", "1");
                 ViewData["Log_in"] = "3";
                 //HttpContext.Session.SetString("Role", model.Role.ToString());
+                HttpContext.Session.SetString("Staff_no", result.staff_no.ToString());
 
-                return RedirectToAction("Dashboard", "Administrations", new { @role = result.Role ,@id=result.staff_no});
+                return RedirectToAction("Dashboard", "Administrations", new { @id=result.staff_no});
 
 
             }

@@ -18,7 +18,7 @@ namespace Covid19Tracing.Models
 
        
         [Display(Name = "Patients id", Prompt = "Patients id")]
-        [MaxLength(50)]
+        //[MaxLength(50)]
         //[ForeignKey("ID")]
         public int Patients_id { get; set; }
 
@@ -28,6 +28,7 @@ namespace Covid19Tracing.Models
           
         
         [Display(Name = "Date", Prompt = "Date")]
+        [DataType(DataType.Date)]
         [MaxLength(50)] 
         public string Date { get; set; }
 

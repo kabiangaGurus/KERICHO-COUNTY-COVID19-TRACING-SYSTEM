@@ -31,6 +31,9 @@ namespace Fuela.DBContext
         public DbSet<Covid19Tracing.Models.SuspectedCases> SuspectedCases { get; set; }
 
 
+        public DbSet<Covid19Tracing.Models.Status> Status { get; set; }
+
+
 
     }
 }

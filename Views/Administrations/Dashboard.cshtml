@@ -23,7 +23,7 @@
     <div class="dashbord dashbord-green">
         <div class="icon-section">
             <i class="fa fa-heartbeat" aria-hidden="true"></i><br>
-            <small>Account</small>
+            <small>Pending..</small>
             <p>$ 256</p>
         </div>
         <div class="detail-section">
@@ -34,7 +34,7 @@
         <div class="icon-section">
             <i class="fa fa-user-md" aria-hidden="true"></i><br>
             <small>Alert</small>
-            <p>9 New</p>
+            <p>Negative</p>
         </div>
         <div class="detail-section">
             <a href="#">More Info </a>
@@ -53,38 +53,40 @@
 
                     }
                 }
-                <form asp-action="Search">
 
+                @using (Html.BeginForm("Index", "Covid_status", FormMethod.Get))
+                {
                     <div class="card-body text-center">
-                        <h3>Please enter patients id here</h3>
+                        <h3>Update patients COVID-19 status</h3>
 
                         <div class="input-group md-form form-sm form-1 pl-0">
                             @*<div class="input-group-prepend">
-            <span class="input-group-text pink lighten-3" id="basic-text1">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </span>
-        </div>*@
-                            <div class="form-group">
+                        <span class="input-group-text pink lighten-3" id="basic-text1">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
+                    </div>*@
+                            
 
-                                <input class="form-control my-0 py-1 text-center" value="@(@ViewData["Roles"])" asp-for="ID" type="text" placeholder="Search Covid Patients" style="height:50px;" aria-label="Search">
+                                <input class="form-control my-0 py-1 text-center"  asp-for="ID" type="text" name="id" placeholder="Search Covid Patients" style="height:50px;" aria-label="Search">
                                 <span asp-validation-for="ID" class="text-danger"></span>
-                            </div></div>
+                            @*</div>*@
                         </div>
+                    </div>
                     <div class="card-footer text-center">
 
                         <div class="form-group">
                             <div class="btn-group btn-group-lg">
                                 @*<button type="button" class="btn btn-primary">Apple</button>*@
-                                <input type="submit" value="Next" asp-action="Search" asp-controller="Administrations" class="btn btn-primary" />
-                                
+                                <input type="submit" value="Next" class="btn btn-primary" />
+
 
                                 @*<button type="button" class="btn btn-primary">Sony</button>*@
                             </div>
                         </div>
                     </div>
-                </form>
+                }
 
-            </div>
+                </div>
 
         </div>
     </div>

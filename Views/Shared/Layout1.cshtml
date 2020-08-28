@@ -44,34 +44,42 @@ else
                                     <li class="nav-item">
                                         <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Create">Administration</a>
                                     </li>
-
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light" asp-area="" asp-controller="Departments" asp-action="Create">Add department</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light" asp-area="" asp-controller="Status" asp-action="Create">Add status</a>
+                                    </li>
 
                                 }
+                                
                             }
 
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Patients" asp-action="Create">Patients</a>
                             </li>
                             @*<li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Covid_status" asp-action="Create">Status</a>
-                    </li>*@
+            <a class="nav-link text-light" asp-area="" asp-controller="Covid_status" asp-action="Create">Status</a>
+        </li>*@
                             @*<li class="nav-item btn btn-primary">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Log_in">Log in</a>
-                    </li>*@
+            <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Log_in">Log in</a>
+        </li>*@
 
                             }
 
                             @*<li class="nav-item btn btn-primary">
 
-                    <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Log_in">
+        <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Log_in">
 
-                        Check status
-                    </a>*@
+            Check status
+        </a>*@
 
                         </ul>
 
                     </div>
                 </div>
+                
+              
                 
                 <a class="btn btn-success ml-auto mr-1" asp-action="Log_out" asp-controller="Administrations">Log out &nbsp;<i class="fa fa-power-off" aria-hidden="true"></i></a>
 

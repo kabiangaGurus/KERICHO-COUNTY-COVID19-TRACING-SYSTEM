@@ -4,45 +4,59 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="card card-1">
+    <div class="card-body  text-left">
 
-<h1>Index</h1>
+        <h5><img src="/images/covid.png" class="icons1" alt="" /> &nbsp; | &nbsp;Update COVID19 Status</h5>
+        @*<input type="submit" value="Log in" class="btn btn-primary" />*@
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Patients_id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Patients_id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    </div>
+</div>
+<div class="card card-1">
+    <div class="card-body  text-center">
+        <div class="alert alert-success" role="alert">
+           COVID19 status updated successfully.The details has been sent to the patient.
+        </div>
+        <a class="btn btn-primary" asp-action="Create" asp-controller="SuspectedCases">Are there suspected cases?</a>
+        <table class="table">
+
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Patients_id)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Patients_id)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary">Update COVID19 Status</a> |
+                            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div></div>
