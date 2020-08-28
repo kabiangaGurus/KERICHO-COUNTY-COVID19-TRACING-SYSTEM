@@ -1,0 +1,43 @@
+﻿@model Covid19Tracing.Models.SuspectedCases
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>SuspectedCases</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.P_patient_id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.P_patient_id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Full_names)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Full_names)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.S_patient_id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.S_patient_id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone_number)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Phone_number)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

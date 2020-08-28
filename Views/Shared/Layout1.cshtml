@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Covid19Tracing</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+@section scripts {
+    var url = $("#RedirectTo").val();
+    location.href = url
+    ;}
+@RenderSection("scripts", false)
+@if (ViewData["Roles"] == null)
+{
+    @Html.Hidden("RedirectTo", Url.Action("Log_in", "Administrators"));
+}
+else
+{
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3" style="background-color: #138D75
+">
+
+                <div class="container">
+                    <a class="navbar-brand">
+                        <img src="/images/covid.png" class="logo1">
+
+                    </a>
+                    <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">Covid19Tracing</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+
+                            @{
+
+                                if (ViewData["Roles"].ToString() == "2")
+                                {
+
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Create">Administration</a>
+                                    </li>
+
+
+                                }
+                            }
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Patients" asp-action="Create">Patients</a>
+                            </li>
+                            @*<li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Covid_status" asp-action="Create">Status</a>
+                    </li>*@
+                            @*<li class="nav-item btn btn-primary">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Log_in">Log in</a>
+                    </li>*@
+
+                            }
+
+                            @*<li class="nav-item btn btn-primary">
+
+                    <a class="nav-link text-light" asp-area="" asp-controller="Administrations" asp-action="Log_in">
+
+                        Check status
+                    </a>*@
+
+                        </ul>
+
+                    </div>
+                </div>
+                
+                <a class="btn btn-success ml-auto mr-1" asp-action="Log_out" asp-controller="Administrations">Log out &nbsp;<i class="fa fa-power-off" aria-hidden="true"></i></a>
+
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+                        <div class="card card-1 d-flex ustify-content-center">
+
+                            <div class="card-body text-center">
+                                <img src="/images/logo.png" style="height:80%;width:60%" alt="First slide">
+
+                                <h5 class="card-title">Kericho County COVID19 Tracing aand tracking system</h5>
+                                <p class="card-text">Easy communication to Positive tested Covid19 patients</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-8 col-lg-8 col-xs-8">
+                        @RenderBody()
+
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted text-center" style="background-color: #138D75">
+
+            @{
+                if (ViewData["Roles"].ToString() == "1")
+                {
+                    <div class="container text-light">
+                        &copy; 2020 - Covid19Tracing - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-light">
+                            Attendant &nbsp; @ViewData["identity"]
+                        </a>
+
+
+                    </div>
+
+
+                }
+                else
+                {
+                    <div class="container text-light">
+                        &copy; 2020 - Covid19Tracing - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-light">
+                            Administrator &nbsp; @ViewData["identity"]
+                        </a>
+
+
+                    </div>
+
+                }
+
+            }
+
+
+
+
+
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
+}
+</html>

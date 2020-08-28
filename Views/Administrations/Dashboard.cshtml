@@ -1,0 +1,121 @@
+﻿@{
+    Layout = "Layout1";
+}
+@model Covid19Tracing.Models.Patients
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="custom.css">
+<link href="https://fonts.googleapis.com/css?family=Raleway:100,200,400,500,600" rel="stylesheet" type="text/css">
+@*<i class="fa fa-address-book" aria-hidden="true"></i>*@
+<link href="~/css/StyleSheet.css" rel="stylesheet" />
+<div class="main-section">
+    <div class="dashbord">
+        <div class="icon-section">
+            <i class="fa fa-stethoscope" aria-hidden="true"></i><br>
+
+            <small>COVID19 Positive</small>
+            <p>256</p>
+        </div>
+        <div class="detail-section">
+            <a asp-action="index" asp-controller="Patients">More Info </a>
+        </div>
+    </div>
+    <div class="dashbord dashbord-green">
+        <div class="icon-section">
+            <i class="fa fa-heartbeat" aria-hidden="true"></i><br>
+            <small>Account</small>
+            <p>$ 256</p>
+        </div>
+        <div class="detail-section">
+            <a href="#">More Info </a>
+        </div>
+    </div>
+    <div class="dashbord dashbord-orange">
+        <div class="icon-section">
+            <i class="fa fa-user-md" aria-hidden="true"></i><br>
+            <small>Alert</small>
+            <p>9 New</p>
+        </div>
+        <div class="detail-section">
+            <a href="#">More Info </a>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-lg-12 text-center">
+            <div class="card">
+                @{ if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <img src="/images/119051.png" class="logo1"> &nbsp;
+                            <strong>Error!</strong> This patient does not exists!<br />
+                            <a asp-action="Create" asp-controller="Patients" class="btn btn-danger">Register agent &nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                        </div>
+
+                    }
+                }
+                <form asp-action="Search">
+
+                    <div class="card-body text-center">
+                        <h3>Please enter patients id here</h3>
+
+                        <div class="input-group md-form form-sm form-1 pl-0">
+                            @*<div class="input-group-prepend">
+            <span class="input-group-text pink lighten-3" id="basic-text1">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+        </div>*@
+                            <div class="form-group">
+
+                                <input class="form-control my-0 py-1 text-center" value="@(@ViewData["Roles"])" asp-for="ID" type="text" placeholder="Search Covid Patients" style="height:50px;" aria-label="Search">
+                                <span asp-validation-for="ID" class="text-danger"></span>
+                            </div></div>
+                        </div>
+                    <div class="card-footer text-center">
+
+                        <div class="form-group">
+                            <div class="btn-group btn-group-lg">
+                                @*<button type="button" class="btn btn-primary">Apple</button>*@
+                                <input type="submit" value="Next" asp-action="Search" asp-controller="Administrations" class="btn btn-primary" />
+                                
+
+                                @*<button type="button" class="btn btn-primary">Sony</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+    @*<div class="dashbord dashbord-blue">
+            <div class="icon-section">
+                <i class="fa fa-tasks" aria-hidden="true"></i><br>
+                <small>Task</small>
+                <p>8</p>
+            </div>
+            <div class="detail-section">
+                <a href="#">More Info </a>
+            </div>
+        </div>
+        <div class="dashbord dashbord-red">
+            <div class="icon-section">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i><br>
+                <small>Cart</small>
+                <p>$ 24</p>
+            </div>
+            <div class="detail-section">
+                <a href="#">More Info </a>
+            </div>
+        </div>*@
+    @*<div class="dashbord dashbord-skyblue">
+            <div class="icon-section">
+                <i class="fa fa-comments" aria-hidden="true"></i><br>
+                <small>Mentions</small>
+                <p>96</p>
+            </div>
+            <div class="detail-section">
+                <a href="#">More Info </a>
+            </div>
+        </div>*@
+</div>

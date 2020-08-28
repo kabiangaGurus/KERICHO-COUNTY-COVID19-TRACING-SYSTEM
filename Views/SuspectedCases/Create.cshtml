@@ -1,0 +1,51 @@
+﻿@model Covid19Tracing.Models.SuspectedCases
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card card-1">
+    <div class="card-body  text-left">
+
+        <h5><img src="/images/119079.png" class="icons1" alt="" /> &nbsp; | &nbsp;Register suspected details </h5>
+        @*<input type="submit" value="Log in" class="btn btn-primary" />*@
+
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="P_patient_id" class="control-label"></label>
+                <input asp-for="P_patient_id" value="@(@ViewBag.Nid)" readonly="readonly" class="form-control" />
+                <span asp-validation-for="P_patient_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Full_names" class="control-label"></label>
+                <input asp-for="Full_names" class="form-control" />
+                <span asp-validation-for="Full_names" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="S_patient_id" class="control-label"></label>
+                <input asp-for="S_patient_id" class="form-control" />
+                <span asp-validation-for="S_patient_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone_number" class="control-label"></label>
+                <input asp-for="Phone_number" class="form-control" />
+                <span asp-validation-for="Phone_number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
